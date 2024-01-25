@@ -9,6 +9,7 @@ use App\Models\Vente;
 use App\Models\Client;
 use App\Models\Facture;
 use App\Models\Produit;
+use Barryvdh\DomPDF\PDF;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -88,6 +89,17 @@ class VenteController extends Controller
         return view('vendeur.ventes.show',compact('facture','vente','totalTotaux'));//
     }
 
+    public function downloadpdf($id){
+$data= Facture::Find($id);
+       
+        // share data to view
+        view()->share('facture',$data);
+        $pdf = app('dompdf.wrapper')->loadView('vendeur.ventes.pdf_view', [
+            // 'yo'=> $data
+        ]);
+        // download PDF file with download method
+        return $pdf->stream('pdf_file.pdf');
+    }
     /**
      * Show the form for editing the specified resource.
      */

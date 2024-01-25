@@ -63,5 +63,6 @@ Route::prefix('/superadmin')->middleware(['auth', 'superadmin'])->name('superadm
 
 Route::prefix('vendeur')->middleware('auth', 'vendeur')->name('vendeur.')->group(function () {
     Route::resource('/ventes', Vente::class);
+    Route::get('/facture/pdf/{pdf}' ,[Vente::class,'downloadpdf']);
     
 });

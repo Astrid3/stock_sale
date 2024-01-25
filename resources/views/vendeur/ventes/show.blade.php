@@ -2,7 +2,13 @@
 
 @section('content')
 <div class="card">
+<div class="container mt-1">
+     
+     <div class="d-flex justify-content-end mb-1 ">
+         <a class="btn btn-primary"  href="/vendeur/facture/pdf/{{ $facture->id}}">Export to PDF</a>
+     </div>
     <div class="card-body mx-4">
+    
         <div class="container">
             <p class="text-center" style="font-size: 30px; "> {{ $facture->name}}</p>
             <div class="row">
